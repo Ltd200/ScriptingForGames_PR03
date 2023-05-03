@@ -15,6 +15,9 @@ public class PlayerLevelSystem : MonoBehaviour
     [SerializeField] Image expBar;
     [SerializeField] TextMeshProUGUI LevelText;
 
+    [Header("Effects")]
+    [SerializeField] AudioClip LevelUpAudio;
+
 
 
     private void Start()
