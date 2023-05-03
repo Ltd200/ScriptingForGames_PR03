@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerLevelSystem : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class PlayerLevelSystem : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] Image expBar;
+    [SerializeField] TextMeshProUGUI LevelText;
+
+
 
     private void Start()
     {
@@ -21,20 +25,17 @@ public class PlayerLevelSystem : MonoBehaviour
     private void Update()
     {
         UpdateUI();
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            GainExp(20);
-        }
         if(currentEXP >= requiredEXP)
         {
             LevelUp();
         }
     }
 
-    private void UpdateUI()
+    private void UpdateUI() //Updates UI to reflect level on screen
     {
         float expFraction = currentEXP / requiredEXP;
         expBar.fillAmount = expFraction;
+        LevelText.text = "Level " + level;
     }
 
     public void GainExp(float amountGained)
