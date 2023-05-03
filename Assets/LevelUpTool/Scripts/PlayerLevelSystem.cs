@@ -18,7 +18,7 @@ public class PlayerLevelSystem : MonoBehaviour
 
     [Header("Level Up Math")]
     [Range(1f,300f)]
-    [Tooltip("Adjusts a flat amount how much xp each level needs, this will have a minmal effect")]
+    [Tooltip("Adjusts a flat amount how much xp each level needs, this will have a minimal effect")]
     public float additionMultiplier = 300;
     [Range(2f, 4f)]
     [Tooltip("If powerMultiplier is higher lower levels will be closer together in exp values. If lower xp values will be further apart")]
