@@ -7,7 +7,11 @@ public class ItemLevelRequirement : MonoBehaviour
     PlayerLevelSystem playerLevel;
     private GameObject player;
 
+    
+    [Header("Level Requirement Specifications")]
     [SerializeField] int requiredLevel;
+    public bool canBeEquipped;
+
 
     private void Start()
     {
@@ -21,10 +25,12 @@ public class ItemLevelRequirement : MonoBehaviour
         {
             if (playerLevel.level >= requiredLevel)
             {
-                Debug.Log("Item Equiped!");
+                Debug.Log("This item can be equiped!");
+                canBeEquipped = true;
             }
             else
-                Debug.Log("You are to low level!");
+                Debug.Log("You are to low level to equipe this item!");
+                canBeEquipped = false;
         }
     }
 
