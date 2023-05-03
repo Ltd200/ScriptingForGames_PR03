@@ -1,31 +1,51 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class PlayerLevelSystem
+public class PlayerLevelSystem : MonoBehaviour
 {
-    private int level;
-    private int exp;
-    private int expToNextLevel;
+    [Header("Level Information")]
+    public int level;
+    public float currentEXP;
+    public float requiredEXP;
 
-    [SerializeField] ParticleSystem LevelUpEffect;
-    [SerializeField] AudioSource LevelUpSound;
+    [Header("UI")]
+    [SerializeField] Image expBar;
 
-    public PlayerLevelSystem()
+    private void Start()
     {
-        level = 0;
-        exp = 0;
-        expToNextLevel = 100;
+        expBar.fillAmount = currentEXP / requiredEXP;
     }
 
-    public void AddExp(int amount)
+    private void Update()
     {
-        exp += amount;
-        if(exp >= expToNextLevel) //Level Up
+        UpdateUI();
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            level++;
-            exp -= expToNextLevel;
-
+            GainExp(20);
         }
+        if(currentEXP >= requiredEXP)
+        {
+            LevelUp();
+        }
+    }
+
+    private void UpdateUI()
+    {
+        float expFraction = currentEXP / requiredEXP;
+        expBar.fillAmount = expFraction;
+    }
+
+    public void GainExp(float amountGained)
+    {
+        currentEXP += amountGained;
+    }
+
+    public void LevelUp() //Attactch level up logic here
+    {
+        level++;
+        expBar.fillAmount = 0f;
+        currentEXP = Mathf.RoundToInt(currentEXP - requiredEXP);
     }
 }
